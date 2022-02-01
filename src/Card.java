@@ -64,7 +64,7 @@ public class Card {
         this.rank = rank;
     }
 
-    public void value(int value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
