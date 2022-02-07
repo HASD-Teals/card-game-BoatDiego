@@ -1,11 +1,15 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
+//import java.util.LinkedHashSet;
+//import java.util.Random;
+//import java.util.Set;
 
 public class Deck {
     // PROPERTIES
     private Card[] defCard = new Card[52];
     private Card[] cards;
-
+    private ArrayList<Card> secCards = new ArrayList<Card>();
     // protected values for all default
     protected char[] rank = { '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A' };
     protected String[] Symbol = { "Clubs", "Diamonds", "Hearts", "Spades" };
@@ -13,13 +17,39 @@ public class Deck {
     protected String[] Color = { "Green", "Blue", "Red", "Black" };
 
     // these are variables to store the custom value to ensure it goes smooth
-
-    // CONSTRUCTORS
     public Deck() {
 
-        this.cards = defDeck();
-    }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                this.defCard[j].setRank(rank[j]);
+                this.defCard[j].setValue(value[j]);
+                this.defCard[j].playable(true);
+                this.defCard[j].setSymbol(Symbol[i]);
+                this.defCard[j].setColor(Color[i]);
+            }
+        }
+      for (int k = 0; k < defCard.length; k++) {
+        secCards.add(defCard[k]);
+      }
+    
 
+
+    }
+  /*  // CONSTRUCTORS
+    public Deck() {
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                this.defCard[j].setRank(rank[j]);
+                this.defCard[j].setValue(value[j]);
+                this.defCard[j].playable(true);
+                this.defCard[j].setSymbol(Symbol[i]);
+                this.defCard[j].setColor(Color[i]);
+            }
+        }
+      
+    }
+*/
     /**
      * declares ADVANCED custom deck object,
      * Leave without parameters if you want a default deck
@@ -40,7 +70,7 @@ public class Deck {
             String DiamondsColor) {
         String[] tempColor = { ClubsColor, DiamondsColor, HeartColor, SpadesColor };
         int[] tempValue = value;
-        ArrayList suit = new ArrayList<String>();
+        ArrayList<Object> suit = new ArrayList<Object>();
         suit.add("Clubs");
         suit.add("Diamonds");
         suit.add("Hearts");
@@ -75,7 +105,7 @@ public class Deck {
                 this.defCard[j].setColor(tempColor[i]);
             }
         }
-
+        
     }
 
     // What teals wanted: Not that great
@@ -110,8 +140,10 @@ public class Deck {
     // ACCESSORS
     public Card[] getCards() {
         return this.cards;
+        }
+    public Card getCardAt(int position){
+        return this.cards[position];
     }
-
     // MUTATORS
     public void setCards(Card[] cards) {
         this.cards = cards;
@@ -120,8 +152,13 @@ public class Deck {
     // METHODS
     public void shuffleCards() {
         // Shuffle this.cards in a random order
+        //Random nums = new Random();
+        //Set<Integer>set = new LinkedHashSet<Integer>();
+        Collections.shuffle(Arrays.asList(this.cards));
+        //for (int i = 0; i < cards.length; i++) {
+          //  this.cards[i] = cardi[nums.nextInt(cards.length)];
+        //}        
     }
-
     /*
      * 52 cards - final amount of cards in the default array
      * 26 red and black - in this suit, use green, blue, red, black
@@ -130,7 +167,7 @@ public class Deck {
      * king, queen, and jack are all value of 10 - if these values
      * ace is value of 1
      */
-
+/*
     private Card[] defDeck() {
 
         for (int i = 0; i < 4; i++) {
@@ -144,5 +181,5 @@ public class Deck {
         }
         return this.defCard;
     }
-
+*/
 }
