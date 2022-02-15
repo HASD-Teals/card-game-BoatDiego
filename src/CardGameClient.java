@@ -6,7 +6,8 @@ public class CardGameClient {
         Two.shuffleCards();
     
         for (int i = 0; i < 52; i++) {
-           if (1==1){}
+            Card one = One.getCardAt(i);
+            Card two = Two.getCardAt(i);
         }
 
     }
